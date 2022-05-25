@@ -8,8 +8,12 @@ class Chat(models.Model):
     id = models.IntegerField(editable=False, primary_key=True)
     name = models.CharField(max_length=35, verbose_name='Имя')
 
+class Tag(models.Model):
+    tag = models.CharField(max_length=35, verbose_name='Тег')
+
 class Message(models.Model):
     id = models.IntegerField(editable=False, primary_key=True)
     visibility = models.BooleanField(verbose_name='Видимость', default=True)
     chat = models.ForeignKey(Chat, verbose_name='Чат', on_delete = models.CASCADE)
     user = models.ForeignKey(User, verbose_name='Пользователь', on_delete = models.CASCADE, null=True)
+    tag = models.ForeignKey(Tag, verbose_name='Тег', on_delete = models.CASCADE, null=True)
