@@ -1,12 +1,12 @@
 from django.contrib import admin
 
-from viewer.models import *
+from .models import *
 
 class ChatAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', )
+    list_display = ('chat_id', 'name', )
 
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'chat')
+    list_display = ('message_id', 'chat', 'message')
 
 class UserAdmin(admin.ModelAdmin):
     list_display = ('user', 'user_id')

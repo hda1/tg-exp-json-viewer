@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 
-from viewer.models import Message
-from viewer.utils import import_json_chat
+from .models import Message
+from .utils import import_json_chat
 
 class HomePageView(TemplateView):
 
