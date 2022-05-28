@@ -6,15 +6,15 @@ class ChatAdmin(admin.ModelAdmin):
     list_display = ('chat_id', 'name', )
 
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('message_id', 'chat', 'message')
+    list_display = ('message_id', 'chat', 'text', 'visibility', 'contact')
 
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('user', 'user_id')
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('name', 'contact_id')
 
 class TagAdmin(admin.ModelAdmin):
     list_display = ('tag',)
 
 admin.site.register(Chat, ChatAdmin)
 admin.site.register(Message, MessageAdmin)
-admin.site.register(User, UserAdmin)
+admin.site.register(Contact, ContactAdmin)
 admin.site.register(Tag, TagAdmin)

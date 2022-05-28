@@ -1,6 +1,6 @@
 import json
 
-from .models import Chat, Message
+from .models import Chat, Message, Contact
 
 def import_json_chat(file_name):
     with open(file_name, 'r') as json_file:
@@ -9,12 +9,19 @@ def import_json_chat(file_name):
         chat_id = data['id']
         chat_messages = data['messages']
 
-        chat = Chat(chat_id=chat_id, name=chat_name)
-        chat.save()
+        chat, created = Chat.objects.get_or_create(chat_id=chat_id, name=chat_name)
 
-        for message in chat_messages[:10]:
-            msg = Message(message_id=message['id'], message=message['text'], chat=chat)
-            msg.save()
+        for message in chat_messages[:40]:
+            if message['type'] == 'service':
+                #if message['action'] == 'join_group_by_link':
+                #    user, created = User.object.get_or_create(user=message['actor'], user_id=message['actor_id'])
+                continue
+            if message['type'] == 'message':
+                user_id = message['from_id']
+                user_name = message['from']
+                contact, created = Contact.objects.get_or_create(contact_id=message['from_id'], name=message['from'])
+                msg, created = Message.objects.get_or_create(message_id=message['id'], text=message['text'], chat=chat, contact=contact)
+
 
     return chat_name + ' ' + str(chat_id)
 
