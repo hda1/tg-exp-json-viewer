@@ -35,7 +35,7 @@ class Tag(models.Model):
 
 class Message(models.Model):
     message_id = models.IntegerField(verbose_name='ID', null=True)
-    text = models.CharField(max_length=700, verbose_name='Сообщение', default='')
+    text = models.CharField(max_length=1000, verbose_name='Сообщение', default='')
     visibility = models.BooleanField(verbose_name='Видимость', default=True)
     chat = models.ForeignKey(Chat, verbose_name='Чат', on_delete = models.CASCADE)
     contact = models.ForeignKey(Contact, verbose_name='Пользователь', on_delete = models.CASCADE, null=True)

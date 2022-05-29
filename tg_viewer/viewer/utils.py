@@ -9,9 +9,9 @@ def import_json_chat(file_name):
         chat_id = data['id']
         chat_messages = data['messages']
 
-        chat, created = Chat.objects.get_or_create(chat_id=chat_id, name=chat_name)
+        chat, _ = Chat.objects.get_or_create(chat_id=chat_id, name=chat_name)
 
-        for message in chat_messages[:40]:
+        for message in chat_messages[:60]:
             if message['type'] == 'service':
                 #if message['action'] == 'join_group_by_link':
                 #    user, created = User.object.get_or_create(user=message['actor'], user_id=message['actor_id'])
@@ -19,8 +19,8 @@ def import_json_chat(file_name):
             if message['type'] == 'message':
                 user_id = message['from_id']
                 user_name = message['from']
-                contact, created = Contact.objects.get_or_create(contact_id=message['from_id'], name=message['from'])
-                msg, created = Message.objects.get_or_create(message_id=message['id'], text=message['text'], chat=chat, contact=contact)
+                contact, _ = Contact.objects.get_or_create(contact_id=message['from_id'], name=message['from'])
+                msg, _ = Message.objects.get_or_create(message_id=message['id'], defaults={'text':message['text'], 'chat':chat, 'contact':contact, 'visibility': True})
 
 
     return chat_name + ' ' + str(chat_id)
