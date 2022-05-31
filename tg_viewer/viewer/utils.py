@@ -11,7 +11,7 @@ def import_json_chat(file_name):
 
         chat, _ = Chat.objects.get_or_create(chat_id=chat_id, name=chat_name)
 
-        for message in chat_messages[:60]:
+        for message in chat_messages[:70]:
             if message['type'] == 'service':
                 #if message['action'] == 'join_group_by_link':
                 #    user, created = User.object.get_or_create(user=message['actor'], user_id=message['actor_id'])
