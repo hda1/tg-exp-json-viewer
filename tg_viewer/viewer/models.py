@@ -25,6 +25,18 @@ class Chat(models.Model):
         verbose_name_plural = 'Чаты'
 
 
+class File(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Имя')
+    mime = models.CharField(max_length=35, verbose_name='Тип')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'Файл'
+        verbose_name_plural = 'Файлы'
+
 class Tag(models.Model):
     tag = models.CharField(max_length=35, verbose_name='Тег')
 
@@ -51,6 +63,7 @@ class Message(models.Model):
     contact = models.ForeignKey(Contact, verbose_name='Пользователь', on_delete = models.CASCADE, null=True)
     tag = models.ForeignKey(Tag, verbose_name='Тег', on_delete = models.CASCADE, null=True, blank=True)
     photo = models.ForeignKey(Photo, verbose_name='Фотография', on_delete = models.CASCADE, null=True)
+    file = models.ForeignKey(File, verbose_name='Файл', on_delete=models.CASCADE, null=True)
 
     class Meta:
         ordering = ['message_id']

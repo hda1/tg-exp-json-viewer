@@ -8,6 +8,9 @@ class ChatAdmin(admin.ModelAdmin):
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('name', 'contact_id')
 
+class FileAdmin(admin.ModelAdmin):
+    list_display = ('name', )
+
 class MessageAdmin(admin.ModelAdmin):
     list_display = ('message_id', 'chat', 'text', 'visibility', 'contact')
 
@@ -19,6 +22,7 @@ class TagAdmin(admin.ModelAdmin):
 
 admin.site.register(Chat, ChatAdmin)
 admin.site.register(Contact, ContactAdmin)
+admin.site.register(File, FileAdmin)
 admin.site.register(Message, MessageAdmin)
 admin.site.register(Photo, PhotoAdmin)
 admin.site.register(Tag, TagAdmin)
