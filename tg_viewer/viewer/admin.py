@@ -12,7 +12,7 @@ class FileAdmin(admin.ModelAdmin):
     list_display = ('name', )
 
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('message_id', 'chat', 'text', 'visibility', 'contact')
+    list_display = ('message_id', 'chat', 'text', 'visibility', 'contact', 'photo')
 
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('path', 'width', 'height')
