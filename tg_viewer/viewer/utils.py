@@ -1,6 +1,6 @@
 import json
 
-from .models import Chat, Message, Contact, Photo
+from .models import Chat, Contact, File, Message, Photo
 
 def import_json_chat(file_name):
     with open(file_name, 'r') as json_file:
@@ -17,14 +17,21 @@ def import_json_chat(file_name):
                 #    user, created = User.object.get_or_create(user=message['actor'], user_id=message['actor_id'])
                 continue
             if message['type'] == 'message':
+                defaults = {}
+
                 photo_path = message.get('photo', '')
-                defaults ={}
                 if photo_path:
                     width = message.get('width', 0)
                     height = message.get('height', 0)
                     print(photo_path)
                     photo, _ = Photo.objects.get_or_create(path=photo_path, defaults={'width': width, 'height': height})
                     defaults['photo'] = photo
+
+                file_path = message.get('file', '')
+                if file_path:
+                    file_atach, _ = File.objects.get_or_create(path=file_path)
+                    defaults['file'] = file_atach
+
                 #user_id = message['from_id']
                 #defaults['photo'] = photo
                 #user_name = message['from']

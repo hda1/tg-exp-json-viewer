@@ -26,14 +26,14 @@ class Chat(models.Model):
 
 
 class File(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Имя')
+    path = models.CharField(max_length=100, verbose_name='Имя')
     mime = models.CharField(max_length=35, verbose_name='Тип')
 
     def __str__(self):
-        return self.name
+        return self.path
 
     class Meta:
-        ordering = ['name']
+        ordering = ['path']
         verbose_name = 'Файл'
         verbose_name_plural = 'Файлы'
 

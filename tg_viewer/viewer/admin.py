@@ -9,10 +9,10 @@ class ContactAdmin(admin.ModelAdmin):
     list_display = ('name', 'contact_id')
 
 class FileAdmin(admin.ModelAdmin):
-    list_display = ('name', )
+    list_display = ('path', )
 
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('message_id', 'chat', 'text', 'visibility', 'contact', 'photo')
+    list_display = ('message_id', 'chat', 'text', 'visibility', 'contact', 'photo', 'file')
 
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('path', 'width', 'height')
