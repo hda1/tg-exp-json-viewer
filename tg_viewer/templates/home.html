@@ -3,10 +3,33 @@
 <head>
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
-<h1>Test</h1>
+
+
+<div class="page_body chat_page">
+<div class="history">
 {% for message in messages %}
-<div><br>
-{{ message.contact }} <br> {{message.text }}
-</div>
+     <div class="message default clearfix" id="{{ message.message_id }}">
+      <div class="pull_left userpic_wrap">
+       <div class="userpic userpic5" style="width: 42px; height: 42px">
+        <div class="initials" style="line-height: 42px">
+{{ message.contact.name|slice:':2' }}
+        </div>
+       </div>
+      </div>
+      <div class="body">
+       <div class="pull_right date details" title="04.06.2022 23:46:12">
+23:46
+       </div>
+       <div class="from_name">
+{{ message.contact }}
+       </div>
+       <div class="text">
+{{message.text }}
+       </div>
+      </div>
+     </div>
+
 {% endfor %}
+</div>
+</div>
 </html>
