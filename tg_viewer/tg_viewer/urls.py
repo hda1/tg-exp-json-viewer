@@ -15,11 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework.routers import SimpleRouter
 
-from viewer.views import HomePageView, ImportView
+from viewer.views import HomePageView, ImportView, MessageView
+
+router = SimpleRouter()
+router.register('api/messages', MessageView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('import/', ImportView.as_view(), name='import'),
     path('', HomePageView.as_view(), name='home'),
 ]
+
+urlpatterns += router.urls
