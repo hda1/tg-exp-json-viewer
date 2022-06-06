@@ -1,3 +1,4 @@
+import datetime
 import json
 
 from .models import Chat, Contact, File, Message, Photo
@@ -11,7 +12,7 @@ def import_json_chat(file_name):
 
         chat, _ = Chat.objects.get_or_create(chat_id=chat_id, name=chat_name)
 
-        for message in chat_messages[:70]:
+        for message in chat_messages[:10]:
             if message['type'] == 'service':
                 #if message['action'] == 'join_group_by_link':
                 #    user, created = User.object.get_or_create(user=message['actor'], user_id=message['actor_id'])
@@ -32,15 +33,13 @@ def import_json_chat(file_name):
                     file_atach, _ = File.objects.get_or_create(path=file_path)
                     defaults['file'] = file_atach
 
-                #user_id = message['from_id']
-                #defaults['photo'] = photo
-                #user_name = message['from']
-                #defaults['photo'] = photo
+                message_date = datetime.datetime.strptime(message['date'], '%Y-%m-%dT%H:%M:%S')
                 contact, _ = Contact.objects.get_or_create(contact_id=message['from_id'], name=message['from'])
                 defaults['contact'] = contact
                 defaults['text'] = message['text']
                 defaults['chat'] = chat
                 defaults['visibility'] = True
+                defaults['date'] = message_date
                 msg, _ = Message.objects.get_or_create(message_id=message['id'], defaults=defaults)
 
 

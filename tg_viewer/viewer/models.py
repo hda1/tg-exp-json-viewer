@@ -64,6 +64,7 @@ class Message(models.Model):
     tag = models.ForeignKey(Tag, verbose_name='Тег', on_delete = models.CASCADE, null=True, blank=True)
     photo = models.ForeignKey(Photo, verbose_name='Фотография', on_delete = models.CASCADE, null=True)
     file = models.ForeignKey(File, verbose_name='Файл', on_delete=models.CASCADE, null=True)
+    date = models.DateTimeField(null=True)
 
     class Meta:
         ordering = ['message_id']
