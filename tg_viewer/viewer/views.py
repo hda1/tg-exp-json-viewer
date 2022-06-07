@@ -9,16 +9,18 @@ from .serializers import MessageSerializer
 from .utils import import_json_chat
 
 class HomePageView(TemplateView):
-    """
-    def get(self, request, *args, **kwargs):
-
-        return HttpResponse('Hello, World! ' + chat_name)
-    """
     template_name = "home.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['messages'] = Message.objects.filter(visibility=True)[:5]
+        return context
+
+class MainAppView(TemplateView):
+    template_name = "main_app.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         return context
 
 

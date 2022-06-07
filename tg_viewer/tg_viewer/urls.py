@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework.routers import SimpleRouter
 
-from viewer.views import HomePageView, ImportView, MessageView
+from viewer.views import *
 
 router = SimpleRouter()
 router.register('api/messages', MessageView)
@@ -25,7 +25,9 @@ router.register('api/messages', MessageView)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('import/', ImportView.as_view(), name='import'),
+    path('main_app/', MainAppView.as_view(), name='main_app'),
     path('', HomePageView.as_view(), name='home'),
+
 ]
 
 urlpatterns += router.urls
