@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
 </head>
 <body>
-
+{% verbatim %}
+<div class="container" id="messages_app">
+  <div v-for="message in messages">
+      {{message.text}}<br><br>
+  </div>
+</div>
+{% endverbatim %}
+<script src="{% static 'js/app.js' %}"></script>
 </body>
 </html>
